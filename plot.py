@@ -1,23 +1,27 @@
 import csv
 import matplotlib.pyplot as plt
-import numpy as np
+import statistics
 
 frame = []
 left = []
 right = []
 
-with open('processed\\recording.csv', mode ='r')as csvfile:
+with open('processed\\w.csv', mode ='r')as csvfile:
     reader = csv.DictReader(csvfile)
     for row in reader:
         frame.append(row['frame'])
-        left.append(row[' gaze_0_x'])
-        right.append(row[' gaze_1_x'])
+        left.append(float(row[' gaze_0_x']))
+        right.append(float(row[' gaze_1_x']))
 
-left = left[1:10]
-frame = frame[1:10]
 
-frame = np.array(frame)
-left = np.array(left)
+left = [item * 100 for item in left]
+mu = statistics.mean(left)
+print(mu)
+MSE = 0
+for num in left:
+    MSE += (num - mu)**2
+print(MSE)
 
 plt.plot(frame, left, 'o', color='black')
 plt.show()
+

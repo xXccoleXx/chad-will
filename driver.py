@@ -11,6 +11,8 @@ import pygame
 import time
 import threading
 
+name = 'w'
+
 def dot():
     pygame.init()
     screen = pygame.display.set_mode((1700, 1000))
@@ -58,7 +60,7 @@ def record():
     # Below VideoWriter object will create
     # a frame of above defined The output 
     # is stored in 'filename.avi' file.
-    result = cv2.VideoWriter('output\\recording.avi', cv2.VideoWriter_fourcc(*'MJPG'), 30, size)
+    result = cv2.VideoWriter('output\\' + name + '.avi', cv2.VideoWriter_fourcc(*'MJPG'), 30, size)
         
     while(True):
         ret, frame = video.read()
@@ -110,7 +112,7 @@ print("Done!")
 
 # sending to openface to create analytics
 
-inputVideo = "C:\\Users\\chase\\OneDrive\\Desktop\\HGN\\output\\recording.avi"
+inputVideo = "C:\\Users\\chase\\OneDrive\\Desktop\\HGN\\output\\" + name + ".avi"
 featureExtractionApp = "C:\\Users\\chase\\WEBSITE\\OpenFace\\OpenFace_2.2.0_win_x64\\FeatureExtraction.exe"
 command = featureExtractionApp + " -f " + inputVideo + " -gaze"
 os.system(command)

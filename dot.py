@@ -36,4 +36,3 @@ move(clock, [*range(1680, 840, -7)])
 pygame.time.delay(2000)
 
 pygame.quit()
-
